@@ -196,7 +196,7 @@ function handleTouchStart(e) {
     }
 
     //coor down
-    if(r+1 <= rows && !moved){
+    if((r+1) <= (rows-1) && !moved){
         let rDown = r+1;
         let cDown = c;
 
@@ -228,7 +228,7 @@ function handleTouchStart(e) {
     }
 
     //coor right
-    if(c+1 <= columns && !moved){
+    if((c+1) <= (columns-1) && !moved){
         let rRight = r;
         let cRight = c+1;
 
@@ -255,4 +255,3 @@ function handleTouchStart(e) {
         }
     }
 }
-
