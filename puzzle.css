@@ -1,0 +1,73 @@
+@font-face {
+    font-family: 'batmanFont';
+    src: url('batmfa__.ttf') format('truetype');
+} 
+
+@font-face {
+    font-family: 'batmanFont2';
+    src: url('batmfo__.ttf') format('truetype');
+} 
+
+body {
+    font-family: 'batmanFont', Helvetica, sans-serif;
+    text-align: center;
+    color: #f70122;
+    background-color: #000;
+}
+
+#title {
+    height: 150px;
+    width: 400px;
+}
+
+#board {
+    width: 360px;
+    height: 360px;
+    background-color: #f70122;
+    border: 10px solid #f70122;
+
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#board img {
+    width: 118px;
+    height: 118px;
+    border: 1px solid #000;
+}
+
+.start-btn {
+    width: 100px;
+    height: 50px;
+    background-color: #000;
+    border-color: #fff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'batmanFont', Helvetica, sans-serif;
+    margin: auto;
+    cursor: pointer; 
+}
+
+.view-btn {
+    width: 150px;
+    height: 50px;
+    background-color: #f70122;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: 'batmanFont', Helvetica, sans-serif;
+    margin: auto;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+#button-space {
+    display: inline-flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
