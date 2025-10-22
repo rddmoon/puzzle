@@ -33,11 +33,7 @@ function myOnloadFunction(){
                 tile.addEventListener("drop", dragDrop);        //drag an image over another image, drop the image
                 tile.addEventListener("dragend", dragEnd);      //after drag drop, swap the two tiles
 
-                tile.addEventListener("touchstart", dragStart);
-                tile.addEventListener("touchcancel", dragEnter);
-                tile.addEventListener("touchleave", dragDrop);
-                tile.addEventListener("touchmove", dragOver);
-                tile.addEventListener("touchend", dragEnd);
+                tile.addEventListener("touchstart", handleTouchStart);
     
                 document.getElementById("board").append(tile);
                 document.getElementById("turns-space").style.display = 'block';
@@ -158,11 +154,7 @@ function disabledAllTiles() {
             tile.removeEventListener("drop", dragDrop);
             tile.removeEventListener("dragend", dragEnd);
 
-            tile.removeEventListener("touchstart", dragStart);
-            tile.removeEventListener("touchcancel", dragEnter);
-            tile.removeEventListener("touchleave", dragDrop);
-            tile.removeEventListener("touchmove", dragOver);
-            tile.removeEventListener("touchend", dragEnd);
+            tile.removeEventListener("touchstart", handleTouchStart);
             tile.draggable = false;
         }
     }
@@ -176,4 +168,90 @@ function puzzleCompleted(){
 function playAgain(){
     localStorage['isCompleted'] = 'no';
     myOnloadFunction();
+}
+
+function handleTouchStart(e) {
+    e.preventDefault();
+
+    let idImage = e.target.id;
+    let currCoords = idImage.id.split("-");
+    let r = parseInt(currCoords[0]);
+    let c = parseInt(currCoords[1]);
+
+    let moved = false;
+    //coor up
+    if(r-1 >= 0 && !moved){
+        let rUp = r-1;
+        let cUp = c;
+
+        let coorUp = rUp+"-"+cUp;
+        let tileUp = document.getElementById(coorUp);
+        if (tileUp.src.includes("1.jpg")) {
+            let tileUpPrior = tileUp.src;
+            let tileTouched = e.target.src;
+            tileUp.src = tileTouched;
+            e.target.src = tileUpPrior;
+            moved = true;
+        }
+    }
+
+    //coor down
+    if(r+1 <= rows && !moved){
+        let rDown = r+1;
+        let cDown = c;
+
+        let coorDown = rDown+"-"+cDown;
+        let tileDown = document.getElementById(coorDown);
+        if (tileDown.src.includes("1.jpg")) {
+            let tileDownPrior = tileDown.src;
+            let tileTouched = e.target.src;
+            tileDown.src = tileTouched;
+            e.target.src = tileDownPrior;
+            moved = true;
+        }
+    }
+
+    //coor left
+    if(c-1 >= 0 && !moved){
+        let rLeft = r;
+        let cLeft = c-1;
+
+        let coorLeft = rLeft+"-"+cLeft;
+        let tileLeft = document.getElementById(coorLeft);
+        if (tileLeft.src.includes("1.jpg")) {
+            let tileLeftPrior = tileLeft.src;
+            let tileTouched = e.target.src;
+            tileLeft.src = tileTouched;
+            e.target.src = tileLeftPrior;
+            moved = true;
+        }
+    }
+
+    //coor right
+    if(c+1 <= columns && !moved){
+        let rRight = r;
+        let cRight = c+1;
+
+        let coorRight = rRight+"-"+cRight;
+        let tileRight = document.getElementById(coorRight);
+        if (tileRight.src.includes("1.jpg")) {
+            let tileRightPrior = tileRight.src;
+            let tileTouched = e.target.src;
+            tileRight.src = tileTouched;
+            e.target.src = tileRightPrior;
+            moved = true;
+        }
+    }
+
+    if(moved){
+        turns += 1;
+        document.getElementById("turns").innerText = turns;
+
+        statNow = checkComplete();
+
+        if(statNow){
+            disabledAllTiles();
+            puzzleCompleted();
+        }
+    }
 }
