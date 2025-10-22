@@ -174,7 +174,7 @@ function handleTouchStart(e) {
     e.preventDefault();
 
     let idImage = e.target.id;
-    let currCoords = idImage.id.split("-");
+    let currCoords = idImage.split("-");
     let r = parseInt(currCoords[0]);
     let c = parseInt(currCoords[1]);
 
@@ -255,3 +255,4 @@ function handleTouchStart(e) {
         }
     }
 }
+
