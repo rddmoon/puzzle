@@ -32,6 +32,12 @@ function myOnloadFunction(){
                 tile.addEventListener("dragleave", dragLeave);  //dragged image leaving anohter image
                 tile.addEventListener("drop", dragDrop);        //drag an image over another image, drop the image
                 tile.addEventListener("dragend", dragEnd);      //after drag drop, swap the two tiles
+
+                tile.addEventListener("touchstart", dragStart);
+                tile.addEventListener("touchcancel", dragEnter);
+                tile.addEventListener("touchleave", dragDrop);
+                tile.addEventListener("touchmove", dragOver);
+                tile.addEventListener("touchend", dragEnd);
     
                 document.getElementById("board").append(tile);
                 document.getElementById("turns-space").style.display = 'block';
@@ -151,6 +157,12 @@ function disabledAllTiles() {
             tile.removeEventListener("dragleave", dragLeave);
             tile.removeEventListener("drop", dragDrop);
             tile.removeEventListener("dragend", dragEnd);
+
+            tile.removeEventListener("touchstart", dragStart);
+            tile.removeEventListener("touchcancel", dragEnter);
+            tile.removeEventListener("touchleave", dragDrop);
+            tile.removeEventListener("touchmove", dragOver);
+            tile.removeEventListener("touchend", dragEnd);
             tile.draggable = false;
         }
     }
