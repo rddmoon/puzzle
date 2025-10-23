@@ -52,7 +52,7 @@ function myOnloadFunction(){
                 tile.src = imgOrderComplete[imgKey] + ".jpg";
     
                 document.getElementById("board").append(tile);
-                document.getElementById("turns-space").style.display = 'none';
+                // document.getElementById("turns-space").style.display = 'none';
                 document.getElementById("tip").style.display = 'none';
                 document.getElementById("completed").style.display = 'block';
                 document.getElementById("button-space").style.display = 'inline-flex';
@@ -255,3 +255,4 @@ function handleTouchStart(e) {
         }
     }
 }
+
